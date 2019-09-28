@@ -134,9 +134,76 @@ public class test extends Application implements EventHandler<ActionEvent> {
             wooh.show();
         }
         else if (event.getSource() == knappen3){
+            Rectangle black =  new Rectangle();
+            Rectangle red =  new Rectangle();
+            Rectangle yellow =  new Rectangle();
+            
+            black.setWidth(600);
+            black.setHeight(100);
+            black.setFill(Color.BLACK);
+
+            red.setWidth(600);
+            red.setHeight(100);
+            red.setFill(Color.RED);
+
+            yellow.setWidth(600);
+            yellow.setHeight(100);
+            yellow.setFill(Color.YELLOW);
+            
+            BorderPane flagg = new BorderPane();
+            Scene scene = new Scene(flagg, 600, 300);
+            flagg.setTop(black);
+            flagg.setCenter(red);
+            flagg.setBottom(yellow);
+            wooh.setTitle("Flaggor");
+            wooh.setScene(scene);
+            wooh.show();
+
 
         }
-        else if (event.getSource() == knappen4){}
+        else if (event.getSource() == knappen4){
+                Rectangle white = new Rectangle();
+                Rectangle white2 = new Rectangle();
+                Rectangle blue = new Rectangle();
+                Rectangle blue2 = new Rectangle();
+                Rectangle red = new Rectangle();
+
+                red.setHeight(300);
+                red.setWidth(600);
+                red.setFill(Color.RED);
+
+                white.setHeight(80);
+                white.setWidth(600);
+                white.setFill(Color.WHITE);
+
+                white2.setHeight(300);
+                white2.setWidth(80);
+                white2.setFill(Color.WHITE);
+                white2.setTranslateX(-100);
+
+                blue2.setHeight(40);
+                blue2.setWidth(6000);
+                blue2.setFill(Color.BLUE);
+
+                blue.setHeight(300);
+                blue.setWidth(40);
+                blue.setFill(Color.BLUE);
+                blue.setTranslateX(-100);
+
+
+
+
+
+            StackPane flagg = new StackPane(red);
+             flagg.getChildren().addAll(white,white2,blue,blue2);
+
+
+             Scene scene = new Scene(flagg,600,300);
+             wooh.setTitle("Flaggor");
+             wooh.setScene(scene);
+             wooh.show();
+
+        }
 
 
 
