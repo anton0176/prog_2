@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import sun.plugin.dom.css.Rect;
 
 public class test extends Application implements EventHandler<ActionEvent> {
     Button knappen;
@@ -52,7 +53,7 @@ public class test extends Application implements EventHandler<ActionEvent> {
         knappen4.setOnAction(this);
 
 
-        knappen5 = new Button("Lybien");
+        knappen5 = new Button("libyen");
         knappen5.setMinHeight(30);
         knappen5.setMinWidth(30);
         knappen5.setOnAction(this);
@@ -132,8 +133,33 @@ public class test extends Application implements EventHandler<ActionEvent> {
             wooh.setScene(scene);
             wooh.show();
         }
+        else if (event.getSource() == knappen3){
 
+        }
+        else if (event.getSource() == knappen4){}
+
+
+
+
+
+
+
+        else if (event.getSource() == knappen5){
+            Rectangle green = new Rectangle();
+            green.setHeight(300);
+            green.setWidth(600);
+            green.setFill(Color.GREEN);
+
+            StackPane flagg= new StackPane();
+            flagg.getChildren().add(green);
+            Scene scene = new Scene(flagg,600,300);
+
+            wooh.setTitle("Flaggor");
+            wooh.setScene(scene);
+            wooh.show();
+             }
+        }
 
     }
 
-}
+
