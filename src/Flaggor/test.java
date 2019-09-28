@@ -16,6 +16,9 @@ import javafx.scene.control.Button;
 public class test extends Application implements EventHandler<ActionEvent> {
     Button knappen;
     Button knappen2;
+    Button knappen3;
+    Button knappen4;
+    Button knappen5;
     public static void main(String[] args) {
         launch(args);
     }
@@ -26,26 +29,49 @@ public class test extends Application implements EventHandler<ActionEvent> {
     public void start(Stage primaryStage) throws Exception {
         wooh = primaryStage;
 
-        knappen = new Button("Ok!");
+        knappen = new Button("Frankrike");
         knappen.setMinHeight(30);
         knappen.setMinWidth(30);
         knappen.setOnAction(this);
 
-        knappen2 = new Button("hej");
+        knappen2 = new Button("Sverige");
         knappen2.setMinHeight(30);
         knappen2.setMinWidth(30);
         knappen2.setOnAction(this);
 
 
+        knappen3 = new Button("Tyskland");
+        knappen3.setMinHeight(30);
+        knappen3.setMinWidth(30);
+        knappen3.setOnAction(this);
+
+
+        knappen4 = new Button("Norge");
+        knappen4.setMinHeight(30);
+        knappen4.setMinWidth(30);
+        knappen4.setOnAction(this);
+
+
+        knappen5 = new Button("Lybien");
+        knappen5.setMinHeight(30);
+        knappen5.setMinWidth(30);
+        knappen5.setOnAction(this);
+
 
         Group root = new Group();
+        knappen.setTranslateX(0);
         knappen2.setTranslateX(100);
-        knappen.setTranslateX(50);
+        knappen3.setTranslateX(200);
+        knappen4.setTranslateX(300);
+        knappen5.setTranslateX(400);
+
         root.getChildren().add(knappen);
         root.getChildren().add(knappen2);
+        root.getChildren().add(knappen3);
+        root.getChildren().add(knappen4);
+        root.getChildren().add(knappen5);
 
-
-        Scene scene = new Scene(root, 200, 300);
+        Scene scene = new Scene(root, 600, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -102,10 +128,12 @@ public class test extends Application implements EventHandler<ActionEvent> {
 
             Scene scene = new Scene(flagg,600,300);
 
-            wooh.setTitle("Drwaing a circle");
+            wooh.setTitle("Flaggor");
             wooh.setScene(scene);
             wooh.show();
         }
+
+
     }
 
 }
