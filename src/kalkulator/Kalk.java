@@ -16,16 +16,17 @@ import javafx.stage.Stage;
 import javax.xml.soap.Text;
 import java.util.ArrayList;
 
+
+
 public class Kalk extends Application implements EventHandler<ActionEvent> {
 
-    TextField inputField;
-    TextField outputField;
+    public static TextField inputField = new TextField();
+    public static TextField outputField  = new TextField();
+
     ArrayList<Button> numpad;
     GridPane numpadLayout;
     HBox utilContainer;
     BorderPane mainLayout;
-    VBox displayLayout;
-
 
     String tal1;
     String operation;
@@ -41,6 +42,12 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
     Button knappen8;
     Button knappen9;
     Button knappen0;
+    Button knappenlika;
+    Button knappendelete;
+    Button knappenplus;
+    Button knappenminus;
+    Button knappenmulti;
+    Button knappendiv;
 
 
     public static void main(String[] args) {
@@ -51,9 +58,11 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
     public void start(Stage primaryStage) throws Exception {
 
         knappar();
-        displayLayout.getChildren().add(inputField);
+        outputField.setDisable(true);
+        inputField.setDisable(true);
 
-        mainLayout.setTop(displayLayout);
+        mainLayout.setTop(inputField);
+        mainLayout.setRight(outputField);
         mainLayout.setCenter(numpadLayout);
         mainLayout.setBottom(utilContainer);
 
@@ -66,72 +75,110 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
         numpadLayout.add(knappen7, 0, 2);
         numpadLayout.add(knappen8, 1, 2);
         numpadLayout.add(knappen9, 2, 2);
-        numpadLayout.add(knappen0, 0, 3);
-        Scene scene = new Scene(mainLayout, 600, 300);
+        numpadLayout.add(knappen0, 1, 3);
+        numpadLayout.add(knappenlika,0,3);
+        numpadLayout.add(knappendelete,2,3);
+        numpadLayout.add(knappenplus,3,0);
+        numpadLayout.add(knappenminus,3,1);
+        numpadLayout.add(knappenmulti,3,2);
+        numpadLayout.add(knappendiv,3,3);
+
+        Scene scene = new Scene(mainLayout, 800, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
         private void knappar(){
             knappen1 = new Button("1");
-            knappen1.setMinHeight(30);
-            knappen1.setMinWidth(30);
+            knappen1.setMinHeight(60);
+            knappen1.setMinWidth(60);
             knappen1.setOnAction(this);
 
             knappen2 = new Button("2");
-            knappen2.setMinHeight(30);
-            knappen2.setMinWidth(30);
+            knappen2.setMinHeight(60);
+            knappen2.setMinWidth(60);
             knappen2.setOnAction(this);
 
 
             knappen3 = new Button("3");
-            knappen3.setMinHeight(30);
-            knappen3.setMinWidth(30);
+            knappen3.setMinHeight(60);
+            knappen3.setMinWidth(60);
             knappen3.setOnAction(this);
 
 
             knappen4 = new Button("4");
-            knappen4.setMinHeight(30);
-            knappen4.setMinWidth(30);
+            knappen4.setMinHeight(60);
+            knappen4.setMinWidth(60);
             knappen4.setOnAction(this);
 
 
             knappen5 = new Button("5");
-            knappen5.setMinHeight(30);
-            knappen5.setMinWidth(30);
+            knappen5.setMinHeight(60);
+            knappen5.setMinWidth(60);
             knappen5.setOnAction(this);
 
             knappen6 = new Button("6");
-            knappen6.setMinHeight(30);
-            knappen6.setMinWidth(30);
+            knappen6.setMinHeight(60);
+            knappen6.setMinWidth(60);
             knappen6.setOnAction(this);
 
             knappen7 = new Button("7");
-            knappen7.setMinHeight(30);
-            knappen7.setMinWidth(30);
+            knappen7.setMinHeight(60);
+            knappen7.setMinWidth(60);
             knappen7.setOnAction(this);
 
             knappen8 = new Button("8");
-            knappen8.setMinHeight(30);
-            knappen8.setMinWidth(30);
+            knappen8.setMinHeight(60);
+            knappen8.setMinWidth(60);
             knappen8.setOnAction(this);
 
             knappen9 = new Button("9");
-            knappen9.setMinHeight(30);
-            knappen9.setMinWidth(30);
+            knappen9.setMinHeight(60);
+            knappen9.setMinWidth(60);
             knappen9.setOnAction(this);
 
             knappen0 = new Button("0");
-            knappen0.setMinHeight(30);
-            knappen0.setMinWidth(30);
+            knappen0.setMinHeight(60);
+            knappen0.setMinWidth(60);
             knappen0.setOnAction(this);
+
+            knappenlika = new Button("=");
+            knappenlika.setMinHeight(60);
+            knappenlika.setMinWidth(60);
+            knappenlika.setOnAction(this);
+
+            knappendelete = new Button("C");
+            knappendelete.setMinHeight(60);
+            knappendelete.setMinWidth(60);
+            knappendelete.setOnAction(this);
+
+            knappenplus = new Button("+");
+            knappenplus.setMinHeight(60);
+            knappenplus.setMinWidth(60);
+            knappenplus.setOnAction(this);
+
+            knappenminus = new Button("-");
+            knappenminus.setMinHeight(60);
+            knappenminus.setMinWidth(60);
+            knappenminus.setOnAction(this);
+
+            knappenmulti = new Button("*");
+            knappenmulti.setMinHeight(60);
+            knappenmulti.setMinWidth(60);
+            knappenmulti.setOnAction(this);
+
+            knappendiv = new Button("/");
+            knappendiv.setMinHeight(60);
+            knappendiv.setMinWidth(60);
+            knappendiv.setOnAction(this);
 
             inputField = new TextField();
             numpad = new ArrayList<Button>();
             numpadLayout = new GridPane();
             utilContainer = new HBox();
-            displayLayout = new VBox();
             mainLayout = new BorderPane();
+
+
         }
 
 
@@ -140,6 +187,58 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
+
+        if (event.getSource().equals(knappen1)) {
+            inputField.appendText("1");
+        }
+
+        if (event.getSource().equals(knappen2)) {
+            inputField.appendText("2");
+        }
+
+        if (event.getSource().equals(knappen3)) {
+            inputField.appendText("3");
+        }
+        if (event.getSource().equals(knappen4)) {
+            inputField.appendText("4");
+        }
+        if (event.getSource().equals(knappen5)) {
+            inputField.appendText("5");
+        }
+        if (event.getSource().equals(knappen6)) {
+            inputField.appendText("6");
+        }
+        if (event.getSource().equals(knappen7)) {
+            inputField.appendText("7");
+        }
+        if (event.getSource().equals(knappen8)) {
+            inputField.appendText("8");
+        }
+        if (event.getSource().equals(knappen9)) {
+            inputField.appendText("9");
+        }
+        if (event.getSource().equals(knappen0)) {
+            inputField.appendText("0");
+        }
+        if (event.getSource().equals(knappenplus)) {
+            inputField.appendText("+");
+        }
+        if (event.getSource().equals(knappenminus)) {
+            inputField.appendText("-");
+        }
+        if (event.getSource().equals(knappenmulti)) {
+            inputField.appendText("*");
+        }
+        if (event.getSource().equals(knappendiv)) {
+            inputField.appendText("/");
+        }
+        if (event.getSource().equals(knappendelete)) {
+            inputField.clear();
+            outputField.clear();
+        }
+        if (event.getSource().equals(knappenlika)) {
+
+        }
 
     }
 }
