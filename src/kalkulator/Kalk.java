@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import javax.xml.soap.Text;
 import java.util.ArrayList;
 
@@ -23,14 +24,14 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
     public static TextField inputField = new TextField();
     public static TextField outputField  = new TextField();
 
+
     ArrayList<Button> numpad;
     GridPane numpadLayout;
     HBox utilContainer;
     BorderPane mainLayout;
 
-    String tal1;
-    String operation;
-    String tal2;
+    String _expression;
+    String nummer;
 
     Button knappen1;
     Button knappen2;
@@ -48,6 +49,7 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
     Button knappenminus;
     Button knappenmulti;
     Button knappendiv;
+    Button knappenpunkt;
 
 
     public static void main(String[] args) {
@@ -60,6 +62,10 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
         knappar();
         outputField.setDisable(true);
         inputField.setDisable(true);
+        outputField.setPrefHeight(50);
+        inputField.setPrefHeight(100);
+        inputField.setStyle("-fx-font: 20 arial;");
+        outputField.setStyle("-fx-font: 20 arial;");
 
         mainLayout.setTop(inputField);
         mainLayout.setRight(outputField);
@@ -76,12 +82,13 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
         numpadLayout.add(knappen8, 1, 2);
         numpadLayout.add(knappen9, 2, 2);
         numpadLayout.add(knappen0, 1, 3);
-        numpadLayout.add(knappenlika,0,3);
+        numpadLayout.add(knappenlika,1,4);
         numpadLayout.add(knappendelete,2,3);
         numpadLayout.add(knappenplus,3,0);
         numpadLayout.add(knappenminus,3,1);
         numpadLayout.add(knappenmulti,3,2);
         numpadLayout.add(knappendiv,3,3);
+        numpadLayout.add(knappenpunkt,0,3);
 
         Scene scene = new Scene(mainLayout, 800, 500);
         primaryStage.setScene(scene);
@@ -172,6 +179,11 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
             knappendiv.setMinWidth(60);
             knappendiv.setOnAction(this);
 
+            knappenpunkt = new Button(".");
+            knappenpunkt.setMinHeight(60);
+            knappenpunkt.setMinWidth(60);
+            knappenpunkt.setOnAction(this);
+
             inputField = new TextField();
             numpad = new ArrayList<Button>();
             numpadLayout = new GridPane();
@@ -235,10 +247,54 @@ public class Kalk extends Application implements EventHandler<ActionEvent> {
         if (event.getSource().equals(knappendelete)) {
             inputField.clear();
             outputField.clear();
+            _expression = "";
         }
         if (event.getSource().equals(knappenlika)) {
+            _expression = inputField.textProperty().get();
+            calculate();
+        }
+        if (event.getSource().equals(knappenpunkt)) {
+            inputField.appendText(".");
+        }
+    }
+
+    private void calculate() {
+
+        if (_expression.contains("+"))
+        {
+            String[] talen = _expression.split("\\+");
+            double tal1 = Double.parseDouble(talen[0]);
+            double tal2 = Double.parseDouble(talen[1]);
+            double  summa = tal1 + tal2;
+            outputField.appendText(String.valueOf(summa));
+        }
+        else if (_expression.contains("-"))
+        {
+            String[] talen = _expression.split("\\-");
+            double tal1 = Double.parseDouble(talen[0]);
+            double tal2 = Double.parseDouble(talen[1]);
+            double  summa = tal1 - tal2;
+            outputField.appendText(String.valueOf(summa));
+        }
+        else if (_expression.contains("*"))
+        {
+            String[] talen = _expression.split("\\*");
+            double tal1 = Double.parseDouble(talen[0]);
+            double tal2 = Double.parseDouble(talen[1]);
+            double  summa = tal1 * tal2;
+            outputField.appendText(String.valueOf(summa));
+        }
+        else if (_expression.contains("/"))
+        {
+            String[] talen = _expression.split("\\/");
+            double tal1 = Double.parseDouble(talen[0]);
+            double tal2 = Double.parseDouble(talen[1]);
+            double  summa = tal1 / tal2;
+            outputField.appendText(String.valueOf(summa));
 
         }
 
     }
+
+
 }
